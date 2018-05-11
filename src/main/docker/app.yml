@@ -1,0 +1,14 @@
+version: '2'
+services:
+    statsjenkins-app:
+        image: statsjenkins
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://statsjenkins-postgresql:5432/statsjenkins
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    statsjenkins-postgresql:
+        extends:
+            file: postgresql.yml
+            service: statsjenkins-postgresql
